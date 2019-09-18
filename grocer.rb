@@ -41,6 +41,7 @@ def apply_coupons(cart, coupons)
   # create an array of the keys of the coupons_hash
   coupon_keys = coupons_hash.keys
   
+  puts "coupon_keys"
   puts coupon_keys
     
   # iterate through coupon_keys array and map to the new hash
@@ -48,6 +49,7 @@ def apply_coupons(cart, coupons)
       if consolidated_coupons_hash[current_key] 
 	      consolidated_coupons_hash[current_key][:num] += 1
 	    else
+	      puts "got to else"
 	      consolidated_coupons_hash[current_key] = coupons_hash[current_key]
 	      consolidated_coupons_hash[current_key][:num] = 1
    	  end
