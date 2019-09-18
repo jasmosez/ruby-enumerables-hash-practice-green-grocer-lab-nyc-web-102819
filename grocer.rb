@@ -53,8 +53,9 @@ def apply_coupons(cart, coupons)
     # need to return the new hash!
     inner_hash
   }
-      
 
+puts "consolidated_coupons_hash"      
+puts consolidated_coupons_hash
 
 
 
