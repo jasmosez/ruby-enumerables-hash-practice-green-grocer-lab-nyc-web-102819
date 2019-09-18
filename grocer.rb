@@ -33,12 +33,14 @@ def apply_coupons(cart, coupons)
     
     new_coupons_hash
   }
- 
-
+  puts "new_coupons_hash"
+  puts new_coupons_hash
 
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
   items_with_coupons = coupons.map { |coupon| coupon[:item] }
+  puts "items_with_coupons"
+  puts items_with_coupons
   
   
   # use the list of items that have coupons to lookup items in our cart
@@ -60,7 +62,7 @@ def apply_coupons(cart, coupons)
     end
   
   }
-  
+  cart
 end
 
 def apply_clearance(cart)
