@@ -1,15 +1,18 @@
 def consolidate_cart(cart)
-  new = {}
-  cart.reduce { |cart_memo, cart_item|
-    item_keys = cart_item.keys
-    p item_keys
-    item_keys.reduce({}) { |item_keys_memo, keys_item|
-      puts new[keys_item]
-      if new[keys_item] 
-	      new[keys_item][:count] =+ 1
+
+  #step through each item in cart array and map it to a new hash
+  cart.reduce({}) { |new_hash, cart_item_hash|
+    
+    # create an array of the keys of the hash that is an element of cart
+    cart_item_keys = cart_item_hash.keys
+    
+    # iterate through cart_item_keys array
+    cart_item_keys.reduce({}) { |inner_hash, current_key|
+      if new_hash[current_key] 
+	      new_hash[current_key][:count] =+ 1
 	    else
-	      new[keys_item] = item[keys_item]
-	      new[keys_item][:count] = 1
+	      new_hash[current_key] = cart_item_hash[current_key]
+	      new_hash[current_key][:count] = 1
    	  end
     }
   }
