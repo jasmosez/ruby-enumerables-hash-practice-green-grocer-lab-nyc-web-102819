@@ -81,8 +81,8 @@ end
 def apply_clearance(cart)
   # create an array of the keys of the cart
   cart_item_keys = cart.keys
+  
   cart_item_keys.reduce({}) { |memo, key|
-    
     if cart[key][:clearance] == TRUE
       cart[key][:price] = (cart[key][:price]*0.8).round(2)
     end
