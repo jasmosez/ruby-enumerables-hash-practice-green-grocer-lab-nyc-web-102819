@@ -47,27 +47,28 @@ puts coupons
     
     # work through hash element of coupons array to adjust cart
     element.reduce({}) { |inner_hash, (current_key, current_value)|
-    
-      # if the item with a coupon is in our cart
-      # and if our cart count of that item is enough to make use of coupon
-      
+  
+  #    PRINT SOME STUFF
   #    puts "current_key"
   #    puts current_key
       
   #    puts "cart"
   #    puts cart
       
-  #    puts "coupons_hash"
-  #    puts coupons_hash
+  #    puts "element = current coupon hash"
+  #    puts element
+    
+      # if the item with a coupon is in our cart
+      # and if our cart count of that item is enough to make use of coupon
       
-      if cart[current_key] && cart[current_key][:count] >= coupons_hash[current_key][:num]
+      if cart[current_key] && cart[current_key][:count] >= element[current_key][:num]
       
-        # apply each coupon!     
+        # apply coupon!     
         # If we've applied a coupon for this item before...
         if cart["#{current_key} W/COUPON"]
           
           # ...then, increment appropriately
-          cart["#{current_key} W/COUPON"][:count] += coupons_hash[current_key][:num]
+          cart["#{current_key} W/COUPON"][:count] += element[current_key][:num]
           
         else
           # If it's a coupon for a new item
@@ -75,19 +76,19 @@ puts coupons
           # Include appropriate price, clearance and count
           
           cart["#{current_key} W/COUPON"] = {
-            :price => (coupons_hash[current_key][:cost]/coupons_hash[current_key][:num]),
+            :price => (element[current_key][:cost]/element[current_key][:num]),
             :clearance => cart[current_key][:clearance],
-            :count => coupons_hash[current_key][:num]
+            :count => element[current_key][:num]
           }
         end
         
         # No matter what, reduce count for original item
-        cart[current_key][:count] -= coupons_hash[current_key][:num]
+        cart[current_key][:count] -= element[current_key][:num]
       
       end
   
-  }
-  
+    }
+  }  
   cart
 end
 
