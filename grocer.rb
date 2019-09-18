@@ -51,7 +51,7 @@ def apply_coupons(cart, coupons)
       # apply each coupon such that it our cart hash    
       # 1. create new item in cart for item with coupon with appropriate price, clearance and count
       cart["#{item_having_coupon} W/COUPON"] = {
-        :price => coupons_as_hash[item_having_coupon][:cost]/coupons_as_hash[item_having_coupon][:num]
+        :price => (coupons_as_hash[item_having_coupon][:cost]/coupons_as_hash[item_having_coupon][:num])
         :clearance => cart[item_having_coupon][:clearance]
         :count => coupons_as_hash[item_having_coupon][:num]
       }
