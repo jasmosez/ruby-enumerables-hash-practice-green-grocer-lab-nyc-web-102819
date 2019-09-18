@@ -25,6 +25,7 @@ end
 def apply_coupons(cart, coupons)
 
 puts "coupons"
+puts coupons.class
 puts coupons
  
   # transform coupons array to be array of hashes similar in structure to cart hash
@@ -38,6 +39,7 @@ puts coupons
   }
   
 puts "coupons after transform"
+puts coupons.class
 puts coupons
 
   # work through our coupons array to adjust cart
