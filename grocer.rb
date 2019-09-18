@@ -25,34 +25,35 @@ end
 def apply_coupons(cart, coupons)
  
   # transform coupons hash to be similar in structure to cart hash
-  new_coupons = coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
+  coupons_as_hash = coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
     new_coupons_hash[coupon_array_hash_element[:item]] = {
       :num => coupon_array_hash_element[:num], 
       :cost => coupon_array_hash_element[:cost]
-     
     }
-  new_coupons_hash
+    
+    new_coupons_hash
   }
  
- puts new_coupons
+  puts coupons_as_hash
  
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
-  # items_with_coupons = coupons.map { |coupon| coupon[:item] }
+  
+  items_with_coupons = coupons.map { |coupon| coupon[:item] }
   
   # use the list of items that have coupons to lookup items in our cart
- # items_with_coupons.reduce({}) { |new_hash, item_having_coupon
+  items_with_coupons.reduce({}) { |new_hash, item_having_coupon
+  
     # if the item with a coupon is in our cart
+    if cart[item_having_coupon]
     
-   #  if cart[item_having_coupon]
-      
       # and if we have count is enough to make use of coupon
-    #   if cart[item_having_coupon][:count] >= 
+      if cart[item_having_coupon][:count] >= 
     
     # I am looking for the element in an array where the value of the :item key is item_having_coupon
     
     
- # }
+ }
   
   # apply each coupon such that it our cart hash
   
