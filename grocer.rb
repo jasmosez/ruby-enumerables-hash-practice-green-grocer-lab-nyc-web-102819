@@ -87,22 +87,20 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
+  # run three worker methods
   consolidated_cart = consolidate_cart(cart)
   couponed_cart = apply_coupons(consolidated_cart, coupons)
   clearanced_cart = apply_clearance(couponed_cart)
   
-  # create an array of the keys of clearanced_cart
-  ## clearanced_cart_item_keys = clearanced_cart.keys
- 
-  #tabulate assert_not_equal
+  #calculate subtotal
   subtotal = clearanced_cart.reduce(0) { |sum, (key, value)|
     sum += clearanced_cart[key][:price]*clearanced_cart[key][:count]
   }
   
   #check for additional discount. Apply if appropriate
-  puts subtotal
   if subtotal > 100
     subtotal -= (subtotal*0.1).round(2)
   end
+  
   return subtotal
 end
