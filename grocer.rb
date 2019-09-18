@@ -26,7 +26,7 @@ def apply_coupons(cart, coupons)
  
  # transform coupons hash to be similar in structure to cart hash
  coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
-   new_coupons_hash[coupon_array_hash_element[:item]] = {coupon_array_hash_element[:num], coupon_array_hash_element[:cost]}
+   new_coupons_hash[coupon_array_hash_element[:item]] = {:num => coupon_array_hash_element[:num], :cost => coupon_array_hash_element[:cost]}
   puts new_coupons_hash
   new_coupons_hash
      
