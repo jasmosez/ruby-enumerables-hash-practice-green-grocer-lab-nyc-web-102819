@@ -102,7 +102,7 @@ def checkout(cart, coupons)
  
   #tabulate assert_not_equal
   subtotal = clearanced_cart_item_keys.reduce(0) { |sum, key|
-    sum = clearanced_cart[key][:price]*clearanced_cart[key][:count]
+    sum += clearanced_cart[key][:price]*clearanced_cart[key][:count]
   }
   
   #check for additional discount. Apply if appropriate
