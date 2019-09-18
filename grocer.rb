@@ -17,7 +17,7 @@ def consolidate_cart(cart)
     end
     
   # need to return the new hash!
-  ## new_hash  
+  new_hash  
   }
 end
 
