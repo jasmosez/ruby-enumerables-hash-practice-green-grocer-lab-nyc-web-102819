@@ -79,7 +79,13 @@ end
 
 
 def apply_clearance(cart)
-  # code here
+  cart.reduce({}) { |cart_with_clearance, key|
+    
+    if cart[key][:clearance] == TRUE
+      cart[key][:price] = cart[key][:price]*.8
+    end
+  }
+  cart
 end
 
 def checkout(cart, coupons)
