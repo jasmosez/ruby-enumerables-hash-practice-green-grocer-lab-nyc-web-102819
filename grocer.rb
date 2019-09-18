@@ -37,7 +37,7 @@ def apply_coupons(cart, coupons)
   # consolidate coupons_as_hash in case there are multiple coupons for the same item
   
     #step through each item in cart array and map it to a new hash
-    coupons_as_hash.reduce({}) { |new_hash, coupon_item_hash|
+    coupons_as_hash = coupons_as_hash.reduce({}) { |new_hash, coupon_item_hash|
       
       # create an array of the keys of the hash that is an element of cart
       coupon_item_keys = coupon_item_hash.keys
