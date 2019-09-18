@@ -96,6 +96,7 @@ def checkout(cart, coupons)
   clearanced_cart = apply_clearance(couponed_cart)
   
   #tabulate assert_not_equal
+  puts "clearanced_cart"
   puts clearanced_cart
   
   #check for additional discount. Apply if appropriate
