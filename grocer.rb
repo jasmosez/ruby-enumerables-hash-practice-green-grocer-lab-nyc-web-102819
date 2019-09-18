@@ -28,8 +28,8 @@ puts "coupons"
 puts coupons
  
   # transform coupons array to be array of hashes similar in structure to cart hash
-  coupons.map { |new_hash, element|
-    new_hash = {
+  coupons.map! { |element|
+    element = {
       element[:item] => {
       :num => element[:num], 
       :cost => element[:cost]
