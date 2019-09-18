@@ -91,5 +91,13 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  # code here
+  consolidated_cart = consolidate_cart(cart)
+  couponed_cart = apply_coupons(consolidated_cart, coupons)
+  clearanced_cart = apply_clearance(couponed_cart)
+  
+  #tabulate assert_not_equal
+  puts clearanced_cart
+  
+  #check for additional discount. Apply if appropriate
+  
 end
