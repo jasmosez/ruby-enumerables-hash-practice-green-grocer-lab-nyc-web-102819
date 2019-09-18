@@ -106,6 +106,7 @@ def checkout(cart, coupons)
   }
   
   #check for additional discount. Apply if appropriate
+  puts subtotal
   if subtotal > 100
     subtotal -= (subtotal*0.2).round(2)
   end
