@@ -94,11 +94,20 @@ def checkout(cart, coupons)
   consolidated_cart = consolidate_cart(cart)
   couponed_cart = apply_coupons(consolidated_cart, coupons)
   clearanced_cart = apply_clearance(couponed_cart)
-  
-  #tabulate assert_not_equal
   puts "clearanced_cart"
   puts clearanced_cart
   
-  #check for additional discount. Apply if appropriate
+  # create an array of the keys of clearanced_cart
+  clearanced_cart_item_keys = clearanced_cart.keys
+ 
+  #tabulate assert_not_equal
+  subtotal = clearanced_cart_item_keys.reduce(0) { |sum, key|
+    sum = clearanced_cart[key][:price]*clearanced_cart[key][:count]
+  }
   
+  #check for additional discount. Apply if appropriate
+  if subtotal > 100
+    subtotal -= (subtotal*0.2).round(2)
+  end
+  return subtotal
 end
