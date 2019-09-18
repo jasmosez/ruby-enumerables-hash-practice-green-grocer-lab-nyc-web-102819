@@ -42,46 +42,49 @@ puts "coupons after transform"
 puts coupons.class
 puts coupons
 
-  # work through our coupons array to adjust cart
-  coupons.reduce({}) { |new_hash, (current_key, current_value)|
-  
-    # if the item with a coupon is in our cart
-    # and if our cart count of that item is enough to make use of coupon
+  # work through our coupons array to access its hash element(s)
+  coupons.reduce({}) { |new_hash, element|
     
-#    puts "current_key"
-#    puts current_key
+    # work through hash element of coupons array to adjust cart
+    element.reduce({}) { |inner_hash, (current_key, current_value)|
     
-#    puts "cart"
-#    puts cart
-    
-#    puts "coupons_hash"
-#    puts coupons_hash
-    
-    if cart[current_key] && cart[current_key][:count] >= coupons_hash[current_key][:num]
-    
-      # apply each coupon!     
-      # If we've applied a coupon for this item before...
-      if cart["#{current_key} W/COUPON"]
-        
-        # ...then, increment appropriately
-        cart["#{current_key} W/COUPON"][:count] += coupons_hash[current_key][:num]
-        
-      else
-        # If it's a coupon for a new item
-        # Create new item (W/COUPON) in cart
-        # Include appropriate price, clearance and count
-        
-        cart["#{current_key} W/COUPON"] = {
-          :price => (coupons_hash[current_key][:cost]/coupons_hash[current_key][:num]),
-          :clearance => cart[current_key][:clearance],
-          :count => coupons_hash[current_key][:num]
-        }
-      end
+      # if the item with a coupon is in our cart
+      # and if our cart count of that item is enough to make use of coupon
       
-      # No matter what, reduce count for original item
-      cart[current_key][:count] -= coupons_hash[current_key][:num]
-    
-    end
+  #    puts "current_key"
+  #    puts current_key
+      
+  #    puts "cart"
+  #    puts cart
+      
+  #    puts "coupons_hash"
+  #    puts coupons_hash
+      
+      if cart[current_key] && cart[current_key][:count] >= coupons_hash[current_key][:num]
+      
+        # apply each coupon!     
+        # If we've applied a coupon for this item before...
+        if cart["#{current_key} W/COUPON"]
+          
+          # ...then, increment appropriately
+          cart["#{current_key} W/COUPON"][:count] += coupons_hash[current_key][:num]
+          
+        else
+          # If it's a coupon for a new item
+          # Create new item (W/COUPON) in cart
+          # Include appropriate price, clearance and count
+          
+          cart["#{current_key} W/COUPON"] = {
+            :price => (coupons_hash[current_key][:cost]/coupons_hash[current_key][:num]),
+            :clearance => cart[current_key][:clearance],
+            :count => coupons_hash[current_key][:num]
+          }
+        end
+        
+        # No matter what, reduce count for original item
+        cart[current_key][:count] -= coupons_hash[current_key][:num]
+      
+      end
   
   }
   
