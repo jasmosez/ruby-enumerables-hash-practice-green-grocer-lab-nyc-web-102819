@@ -9,7 +9,7 @@ def consolidate_cart(cart)
     # iterate through cart_item_keys array
     cart_item_keys.reduce({}) { |inner_hash, current_key|
       if new_hash[current_key] 
-	      new_hash[current_key][:count] =+ 1
+	      new_hash[current_key][:count] += 1
 	    else
 	      new_hash[current_key] = cart_item_hash[current_key]
 	      new_hash[current_key][:count] = 1
