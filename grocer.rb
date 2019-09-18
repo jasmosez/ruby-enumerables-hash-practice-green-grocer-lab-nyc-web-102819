@@ -30,7 +30,7 @@ puts coupons
   # transform coupons array to be array of hashes similar in structure to cart hash
   coupons.map! { |element|
    
-      [element[:item]] => {
+      element[:item] => {
         :num => element[:num], 
         :cost => element[:cost]
       }
@@ -41,8 +41,8 @@ puts coupons
 puts "coupons after transform"
 puts coupons
 
-  # work through our coupons hash to adjust cart
-  coupons_hash.reduce({}) { |new_hash, (current_key, current_value)|
+  # work through our coupons array to adjust cart
+  coupons.reduce({}) { |new_hash, (current_key, current_value)|
   
     # if the item with a coupon is in our cart
     # and if our cart count of that item is enough to make use of coupon
