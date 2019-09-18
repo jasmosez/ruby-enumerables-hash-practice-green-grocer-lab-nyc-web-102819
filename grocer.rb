@@ -25,7 +25,7 @@ end
 def apply_coupons(cart, coupons)
  
   # transform coupons array to be hash similar in structure to cart hash
-  coupons_as_hash = coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
+  coupons_hash = coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
     new_coupons_hash[coupon_array_hash_element[:item]] = {
       :num => coupon_array_hash_element[:num], 
       :cost => coupon_array_hash_element[:cost]
@@ -34,23 +34,22 @@ def apply_coupons(cart, coupons)
     new_coupons_hash
   }
   
-  # consolidate coupons_as_hash in case there are multiple coupons for the same item
+  puts "coupons_hash"
+  puts coupons_hash
   
-    #step through each item in cart array and map it to a new hash
-    coupons_reduced_hash = coupons_as_hash.reduce({}) { |new_hash, coupon_item_hash|
-      
-      # create an array of the keys of the hash that is an element of cart
-      coupon_item_keys = coupon_item_hash.keys
-      
-      # iterate through cart_item_keys array and map to the new hash
-      coupon_item_keys.reduce({}) { |inner_hash, current_key|
-        if new_hash[current_key] 
-  	      new_hash[current_key][:num] += 1
-  	    else
-  	      new_hash[current_key] = cart_item_hash[current_key]
-  	      new_hash[current_key][:num] = 1
-     	  end
-      }
+  # consolidate coupons_hash in case there are multiple coupons for the same item
+  # create an array of the keys of the coupons_hash
+  coupon_keys = coupon_hash.keys
+    
+  # iterate through coupon_keys array and map to the new hash
+  consolidated_coupon_keys = coupon_keys.reduce({}) { |inner_hash, current_key|
+      if new_hash[current_key] 
+	      new_hash[current_key][:num] += 1
+	    else
+	      new_hash[current_key] = cart_item_hash[current_key]
+	      new_hash[current_key][:num] = 1
+   	  end
+    }
       
     # need to return the new hash!
     new_hash  
