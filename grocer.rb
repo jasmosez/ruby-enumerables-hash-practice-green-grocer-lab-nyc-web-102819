@@ -35,7 +35,7 @@ def apply_coupons(cart, coupons)
   }
   
   # consolidate coupons_as_hash in case there are multiple coupons for the same item
-  # coupons_as_hash = consolidate_cart(coupons_as_hash)
+  new_new = consolidate_cart(coupons_as_hash)
   
 
   # get the list of items for which we have coupons
