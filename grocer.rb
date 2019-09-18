@@ -23,7 +23,12 @@ end
 
 
 def apply_coupons(cart, coupons)
-  coupons.reduce({}) {new_hash, coupon_item_hash}
+  # get the list of items for which we have coupons
+  # i.e. get the value of the :item key for each element of the coupons array
+  coupons.map
+  
+  # compare our cart to the list of items that have coupons
+  # apply each coupon such that it our cart hash
   
 end
 
