@@ -45,17 +45,21 @@ def apply_coupons(cart, coupons)
   items_with_coupons.reduce({}) { |new_hash, item_having_coupon
   
     # if the item with a coupon is in our cart
-    if cart[item_having_coupon]
+    # and if our cart count of that item is enough to make use of coupon
+    if cart[item_having_coupon] && cart[item_having_coupon][:count] >= coupons_as_hash[item_having_coupon][:num]
     
-      # and if we have count is enough to make use of coupon
-      if cart[item_having_coupon][:count] >= 
-    
-    # I am looking for the element in an array where the value of the :item key is item_having_coupon
-    
-    
+      # apply each coupon such that it our cart hash    
+      # 1. create new item in cart for item with coupon with appropriate price, clearance and count
+      cart["#{item_having_coupon} W/COUPON"] = {
+        :price => coupons_as_hash[item_having_coupon][:cost]/coupons_as_hash[item_having_coupon][:num]
+        :clearance => cart[item_having_coupon][:clearance]
+        :count => coupons_as_hash[item_having_coupon][:num]
+      }
+      # 2. reduce count for original item
+      cart[item_having_coupon][:count] -= coupons_as_hash[item_having_coupon][:num]
  }
   
-  # apply each coupon such that it our cart hash
+  
   
 end
 
