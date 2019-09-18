@@ -34,7 +34,6 @@ puts coupons
         :num => element[:num], 
         :cost => element[:cost]
       }
-    end
   }
   
 puts "coupons after transform"
