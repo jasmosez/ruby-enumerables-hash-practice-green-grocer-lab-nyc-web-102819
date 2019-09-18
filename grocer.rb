@@ -27,17 +27,10 @@ def apply_coupons(cart, coupons)
 puts "coupons"
 puts coupons
  
-  # transform coupons array to be hash similar in structure to cart hash
-  coupons_hash = coupons.reduce({}) { |new_hash, element|
+  # transform coupons array to be array of hashes similar in structure to cart hash
+  coupons_updated = coupons.map({}) { |element|
    
-    #check for existing hash key
-    if new_hash[element[:item]]
-      
-      # in which case increment :num and :cost
-      new_hash[element[:item]][:num] += element[:num]
-      new_hash[element[:item]][:cost] += element[:cost]
-    else
-      new_hash[element[:item]] = {
+      [element[:item]] = {
         :num => element[:num], 
         :cost => element[:cost]
       }
