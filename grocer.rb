@@ -78,9 +78,6 @@ end
 
 
 def apply_clearance(cart)
-  # create an array of the keys of the cart
-  ## cart_item_keys = cart.keys
-  
   cart.reduce({}) { |memo, (key, value)|
     if cart[key][:clearance] == true
       cart[key][:price] = (cart[key][:price]*0.8).round(2)
@@ -93,14 +90,12 @@ def checkout(cart, coupons)
   consolidated_cart = consolidate_cart(cart)
   couponed_cart = apply_coupons(consolidated_cart, coupons)
   clearanced_cart = apply_clearance(couponed_cart)
-  puts "clearanced_cart"
-  puts clearanced_cart
   
   # create an array of the keys of clearanced_cart
-  clearanced_cart_item_keys = clearanced_cart.keys
+  ## clearanced_cart_item_keys = clearanced_cart.keys
  
   #tabulate assert_not_equal
-  subtotal = clearanced_cart_item_keys.reduce(0) { |sum, key|
+  subtotal = clearanced_cart.reduce(0) { |sum, (key, value)|
     sum += clearanced_cart[key][:price]*clearanced_cart[key][:count]
   }
   
