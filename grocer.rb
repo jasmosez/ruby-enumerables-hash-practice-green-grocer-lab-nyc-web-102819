@@ -57,17 +57,19 @@ def apply_coupons(cart, coupons)
       # 1. if we have already applied the coupon before, increment appropriately
       if cart["#{item_having_coupon} W/COUPON"]
         # increment appropriately
+        cart["#{item_having_coupon} W/COUPON"][:count] += coupons_hash[item_having_coupon][:num]
+        
       else
         # 3. if we have not, create new item in cart for item with coupon with appropriate price, clearance and count
         
         cart["#{item_having_coupon} W/COUPON"] = {
-          :price => (consolidated_coupons_hash[item_having_coupon][:cost]/consolidated_coupons_hash[item_having_coupon][:num]),
+          :price => (coupons_hash[item_having_coupon][:cost]/coupons_hash[item_having_coupon][:num]),
           :clearance => cart[item_having_coupon][:clearance],
-          :count => consolidated_coupons_hash[item_having_coupon][:num]
+          :count => coupons_hash[item_having_coupon][:num]
         }
       end
       # 4. No matter what, reduce count for original item
-      cart[item_having_coupon][:count] -= consolidated_coupons_hash[item_having_coupon][:num]
+      cart[item_having_coupon][:count] -= coupons_hash[item_having_coupon][:num]
     end
   
   }
