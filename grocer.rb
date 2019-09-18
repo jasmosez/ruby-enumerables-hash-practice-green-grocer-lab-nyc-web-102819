@@ -39,7 +39,7 @@ def apply_coupons(cart, coupons)
   # items_with_coupons = coupons.map { |coupon| coupon[:item] }
   
   # use the list of items that have coupons to lookup items in our cart
-  items_with_coupons.reduce({}) { |new_hash, item_having_coupon
+ # items_with_coupons.reduce({}) { |new_hash, item_having_coupon
     # if the item with a coupon is in our cart
     
    #  if cart[item_having_coupon]
