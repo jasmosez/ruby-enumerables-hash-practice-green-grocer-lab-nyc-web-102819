@@ -3,12 +3,8 @@ def consolidate_cart(cart)
   # step through each item in cart array and map it to a new hash
   cart.reduce({}) { |new_hash, cart_item_hash|
     
-    # create an array of the keys of the hash that is an element of cart
-    ## cart_item_keys = cart_item_hash.keys
-    
-    # iterate through cart_item_keys array and map to the new hash
-    ## cart_item_keys.reduce({}) { |inner_hash, current_key|
-    
+  
+    # iterate through cart_item_hash and map to the new hash
     cart_item_hash.reduce({}) do 
       |inner_hash, (current_key, current_value)|
      
@@ -21,7 +17,7 @@ def consolidate_cart(cart)
     end
     
   # need to return the new hash!
-  new_hash  
+  ## new_hash  
   }
 end
 
