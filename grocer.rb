@@ -33,8 +33,8 @@ def apply_coupons(cart, coupons)
     
     new_coupons_hash
   }
-  puts "new_coupons_hash"
-  puts new_coupons_hash
+  puts "coupons_as_hash"
+  puts coupons_as_hash
 
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
