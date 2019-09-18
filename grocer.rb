@@ -74,17 +74,17 @@ puts consolidated_coupons_hash
   
     # if the item with a coupon is in our cart
     # and if our cart count of that item is enough to make use of coupon
-    if cart[item_having_coupon] && cart[item_having_coupon][:count] >= coupons_reduced_hash[item_having_coupon][:num]
+    if cart[item_having_coupon] && cart[item_having_coupon][:count] >= consolidated_coupons_hash[item_having_coupon][:num]
     
       # apply each coupon such that it our cart hash    
       # 1. create new item in cart for item with coupon with appropriate price, clearance and count
       cart["#{item_having_coupon} W/COUPON"] = {
-        :price => (coupons_reduced_hash[item_having_coupon][:cost]/coupons_reduced_hash[item_having_coupon][:num]),
+        :price => (consolidated_coupons_hash[item_having_coupon][:cost]/consolidated_coupons_hash[item_having_coupon][:num]),
         :clearance => cart[item_having_coupon][:clearance],
-        :count => coupons_reduced_hash[item_having_coupon][:num]
+        :count => consolidated_coupons_hash[item_having_coupon][:num]
       }
       # 2. reduce count for original item
-      cart[item_having_coupon][:count] -= coupons_reduced_hash[item_having_coupon][:num]
+      cart[item_having_coupon][:count] -= consolidated_coupons_hash[item_having_coupon][:num]
     end
   
   }
