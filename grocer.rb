@@ -33,7 +33,8 @@ def apply_coupons(cart, coupons)
     new_hash
   }
   
-
+puts "coupons_hash"
+puts coupons_hash
 
   # work through our coupons hash to adjust cart
   coupons_hash.reduce({}) { |new_hash, (current_key, current_value)|
@@ -41,14 +42,14 @@ def apply_coupons(cart, coupons)
     # if the item with a coupon is in our cart
     # and if our cart count of that item is enough to make use of coupon
     
-    puts "current_key"
-    puts current_key
+#    puts "current_key"
+#    puts current_key
     
-    puts "cart"
-    puts cart
+#    puts "cart"
+#    puts cart
     
-    puts "coupons_hash"
-    puts coupons_hash
+#    puts "coupons_hash"
+#    puts coupons_hash
     
     if cart[current_key] && cart[current_key][:count] >= coupons_hash[current_key][:num]
     
