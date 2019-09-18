@@ -37,31 +37,6 @@ def apply_coupons(cart, coupons)
   puts "coupons_hash"
   puts coupons_hash
   
-  # consolidate coupons_hash in case there are multiple coupons for the same item
-  # create an array of the keys of the coupons_hash
-  coupon_keys = coupons_hash.keys
-  
-  puts "coupon_keys"
-  puts coupon_keys
-    
-  # iterate through coupon_keys array and map to the new hash
-  consolidated_coupons_hash = coupon_keys.reduce({}) { |inner_hash, current_key|
-      if inner_hash[current_key]
-	      puts "more than one coupon for this item"
-	      puts coupons_hash[current_key][:num]
-	      puts inner_hash[current_key][:num]
-	      inner_hash[current_key][:num] += coupons_hash[current_key][:num]
-	    else
-	      puts "got to else"
-	      inner_hash[current_key] = coupons_hash[current_key]
-   	  end
-    
-    # need to return the new hash!
-    inner_hash
-  }
-
-puts "consolidated_coupons_hash"      
-puts consolidated_coupons_hash
 
 
 
