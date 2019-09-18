@@ -24,7 +24,7 @@ end
 
 def apply_coupons(cart, coupons)
  
-  # transform coupons hash to be similar in structure to cart hash
+  # transform coupons array to be hash similar in structure to cart hash
   coupons_as_hash = coupons.reduce({}) { |new_coupons_hash, coupon_array_hash_element|
     new_coupons_hash[coupon_array_hash_element[:item]] = {
       :num => coupon_array_hash_element[:num], 
@@ -33,14 +33,14 @@ def apply_coupons(cart, coupons)
     
     new_coupons_hash
   }
-  puts "coupons_as_hash"
-  puts coupons_as_hash
+  
+  # consolidate coupons_as_hash in case there are multiple coupons for the same item
+  coupons_as_hash = consolidate_cart(coupons_as_hash)
+  
 
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
   items_with_coupons = coupons.map { |coupon| coupon[:item] }
-  puts "items_with_coupons"
-  puts items_with_coupons
   
   
   # use the list of items that have coupons to lookup items in our cart
