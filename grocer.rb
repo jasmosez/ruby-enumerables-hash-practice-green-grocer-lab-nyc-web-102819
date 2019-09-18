@@ -39,23 +39,21 @@ def apply_coupons(cart, coupons)
   
   # consolidate coupons_hash in case there are multiple coupons for the same item
   # create an array of the keys of the coupons_hash
-  coupon_keys = coupon_hash.keys
+  coupon_keys = coupons_hash.keys
     
   # iterate through coupon_keys array and map to the new hash
-  consolidated_coupon_keys = coupon_keys.reduce({}) { |inner_hash, current_key|
-      if new_hash[current_key] 
-	      new_hash[current_key][:num] += 1
+  consolidated_coupons_hash = coupon_keys.reduce({}) { |inner_hash, current_key|
+      if consolidated_coupons_hash[current_key] 
+	      consolidated_coupons_hash[current_key][:num] += 1
 	    else
-	      new_hash[current_key] = cart_item_hash[current_key]
-	      new_hash[current_key][:num] = 1
+	      consolidated_coupons_hash[current_key] = coupons_hash[current_key]
+	      consolidated_coupons_hash[current_key][:num] = 1
    	  end
-    }
-      
+    
     # need to return the new hash!
-    new_hash  
-    }
-
-
+    inner_hash
+  }
+      
 
 
 
