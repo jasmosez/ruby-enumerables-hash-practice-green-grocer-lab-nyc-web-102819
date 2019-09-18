@@ -23,6 +23,9 @@ end
 
 
 def apply_coupons(cart, coupons)
+
+puts "coupons"
+puts coupons
  
   # transform coupons array to be hash similar in structure to cart hash
   coupons_hash = coupons.reduce({}) { |new_hash, element|
