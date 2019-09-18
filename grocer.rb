@@ -6,7 +6,7 @@ def consolidate_cart(cart)
     # create an array of the keys of the hash that is an element of cart
     cart_item_keys = cart_item_hash.keys
     
-    # iterate through cart_item_keys array
+    # iterate through cart_item_keys array and map to the new hash
     cart_item_keys.reduce({}) { |inner_hash, current_key|
       if new_hash[current_key] 
 	      new_hash[current_key][:count] += 1
@@ -15,13 +15,16 @@ def consolidate_cart(cart)
 	      new_hash[current_key][:count] = 1
    	  end
     }
+    
+  # need to return the new hash!
   new_hash  
   }
 end
 
 
 def apply_coupons(cart, coupons)
-  # code here
+  coupons.reduce({}) {new_hash, coupon_item_hash}
+  
 end
 
 def apply_clearance(cart)
