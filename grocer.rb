@@ -1,6 +1,6 @@
 def consolidate_cart(cart)
 
-  #step through each item in cart array and map it to a new hash
+  # step through each item in cart array and map it to a new hash
   cart.reduce({}) { |new_hash, cart_item_hash|
     
     # create an array of the keys of the hash that is an element of cart
@@ -34,17 +34,11 @@ def apply_coupons(cart, coupons)
     new_coupons_hash
   }
   
-  puts "coupons_hash"
-  puts coupons_hash
-  
 
-  # get the list of items for which we have coupons
-  # i.e. get the value of the :item key for each element of the coupons array
+  # get the value of the :item key for each element of the coupons array
   items_with_coupons = coupons.map { |coupon| coupon[:item] }
   
-  puts "items_with_coupons"
-  puts items_with_coupons
-  
+
   # use the list of items that have coupons to lookup items in our cart
   items_with_coupons.reduce({}) { |new_hash, item_having_coupon|
   
@@ -53,14 +47,16 @@ def apply_coupons(cart, coupons)
     
     if cart[item_having_coupon] && cart[item_having_coupon][:count] >= coupons_hash[item_having_coupon][:num]
     
-      # apply each coupon such that    
-      # 1. if we have already applied the coupon before, increment appropriately
+      # apply each coupon!     
+      # If we've applied a coupon for this item before
       if cart["#{item_having_coupon} W/COUPON"]
-        # increment appropriately
+        # Increment appropriately
         cart["#{item_having_coupon} W/COUPON"][:count] += coupons_hash[item_having_coupon][:num]
         
       else
-        # 3. if we have not, create new item in cart for item with coupon with appropriate price, clearance and count
+        # If it's a coupon for a new item
+        # Create new item (W/COUPON) in cart
+        # Include appropriate price, clearance and count
         
         cart["#{item_having_coupon} W/COUPON"] = {
           :price => (coupons_hash[item_having_coupon][:cost]/coupons_hash[item_having_coupon][:num]),
@@ -68,14 +64,16 @@ def apply_coupons(cart, coupons)
           :count => coupons_hash[item_having_coupon][:num]
         }
       end
-      # 4. No matter what, reduce count for original item
+      
+      # No matter what, reduce count for original item
       cart[item_having_coupon][:count] -= coupons_hash[item_having_coupon][:num]
+    
     end
   
   }
+  
   cart
 end
-
 
 
 
