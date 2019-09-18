@@ -34,12 +34,12 @@ def apply_coupons(cart, coupons)
     new_coupons_hash
   }
  
-  puts coupons_as_hash
- 
+
+
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
-  
   items_with_coupons = coupons.map { |coupon| coupon[:item] }
+  
   
   # use the list of items that have coupons to lookup items in our cart
   items_with_coupons.reduce({}) { |new_hash, item_having_coupon|
@@ -57,9 +57,9 @@ def apply_coupons(cart, coupons)
       }
       # 2. reduce count for original item
       cart[item_having_coupon][:count] -= coupons_as_hash[item_having_coupon][:num]
- }
+    end
   
-  
+  }
   
 end
 
