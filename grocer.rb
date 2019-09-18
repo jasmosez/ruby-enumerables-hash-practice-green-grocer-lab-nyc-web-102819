@@ -25,9 +25,7 @@ end
 def apply_coupons(cart, coupons)
   # get the list of items for which we have coupons
   # i.e. get the value of the :item key for each element of the coupons array
-  puts coupons.map { |item|
-    item[:item]
-  }
+  items_with_coupons = coupons.map { |coupon| coupon[:item] }
   
   # compare our cart to the list of items that have coupons
   # apply each coupon such that it our cart hash
