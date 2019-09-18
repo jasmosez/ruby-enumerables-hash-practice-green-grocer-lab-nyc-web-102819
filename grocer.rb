@@ -4,17 +4,21 @@ def consolidate_cart(cart)
   cart.reduce({}) { |new_hash, cart_item_hash|
     
     # create an array of the keys of the hash that is an element of cart
-    cart_item_keys = cart_item_hash.keys
+    ## cart_item_keys = cart_item_hash.keys
     
     # iterate through cart_item_keys array and map to the new hash
-    cart_item_keys.reduce({}) { |inner_hash, current_key|
+    ## cart_item_keys.reduce({}) { |inner_hash, current_key|
+    
+    cart_item_hash.reduce({}) do 
+      |inner_hash, (current_key, current_value)|
+     
       if new_hash[current_key] 
 	      new_hash[current_key][:count] += 1
 	    else
 	      new_hash[current_key] = cart_item_hash[current_key]
 	      new_hash[current_key][:count] = 1
    	  end
-    }
+    end
     
   # need to return the new hash!
   new_hash  
