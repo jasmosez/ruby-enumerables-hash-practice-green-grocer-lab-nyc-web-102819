@@ -15,6 +15,7 @@ def consolidate_cart(cart)
 	      new_hash[current_key][:count] = 1
    	  end
     }
+  new_hash  
   }
 end
 
